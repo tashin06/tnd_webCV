@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tashi Norbu Dema — AI Developer & UX Innovator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Arimo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --navy:#164873; --green:#67C090; --mint:#DDF4E7;
+  --silver:#E5E7EB; --white:#ffffff;
+  --text:#1a1a2e; --muted:#5a6a7a; --card:#f8fafb;
+  --dark-card:rgba(255,255,255,0.05);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Arimo',sans-serif;background:var(--white);color:var(--text);line-height:1.65;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--silver);display:flex;align-items:center;justify-content:space-between;padding:0 60px;height:68px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo img{height:46px;width:auto;display:block}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-links a{font-size:0.86rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--navy);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--green)}
+.nav-cta{background:var(--navy);color:var(--white)!important;padding:9px 22px;border-radius:6px;transition:background .2s!important}
+.nav-cta:hover{background:var(--green)!important}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 60px 80px;background:linear-gradient(135deg,var(--white) 55%,var(--mint) 100%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-120px;right:-80px;width:600px;height:600px;background:radial-gradient(circle,rgba(103,192,144,0.15) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr auto 1fr;gap:56px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--mint);color:var(--navy);font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:6px 14px;border-radius:20px;margin-bottom:24px}
+.hero-badge span{width:7px;height:7px;background:var(--green);border-radius:50%;display:inline-block;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(2.8rem,5vw,4.2rem);font-weight:600;line-height:1.08;color:var(--navy);margin-bottom:12px;letter-spacing:-.03em}
+.hero h1 em{font-style:italic;color:var(--green)}
+.hero-subtitle{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:300;color:var(--muted);margin-bottom:28px;font-style:italic}
+.hero-desc{font-size:1rem;color:var(--muted);max-width:480px;margin-bottom:40px;line-height:1.75}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+.btn-primary{background:var(--navy);color:var(--white);padding:13px 30px;border-radius:8px;font-family:'Arimo',sans-serif;font-weight:600;font-size:.92rem;text-decoration:none;letter-spacing:.03em;transition:background .2s,transform .15s;display:inline-block;border:none;cursor:pointer}
+.btn-primary:hover{background:var(--green);transform:translateY(-2px)}
+.btn-secondary{border:2px solid var(--navy);color:var(--navy);padding:11px 28px;border-radius:8px;font-family:'Arimo',sans-serif;font-weight:600;font-size:.92rem;text-decoration:none;letter-spacing:.03em;transition:all .2s;display:inline-block}
+.btn-secondary:hover{background:var(--navy);color:var(--white);transform:translateY(-2px)}
+.hero-stats{display:grid;grid-template-columns:1fr;gap:16px}
+.stat-card{background:var(--white);border:1px solid var(--silver);border-radius:16px;padding:28px 24px;transition:box-shadow .2s,transform .2s}
+.stat-card:hover{box-shadow:0 8px 32px rgba(22,72,115,.1);transform:translateY(-3px)}
+.stat-number{font-family:'Fraunces',serif;font-size:2.6rem;font-weight:700;color:var(--navy);line-height:1;display:block}
+.stat-label{font-size:.78rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:6px;display:block}
+.hero-photo-wrap{position:relative;display:flex;justify-content:center;align-items:center}
+.hero-blob-bg{position:absolute;width:320px;height:380px;background:rgba(103,192,144,.18);border-radius:60% 40% 55% 45%/50% 60% 40% 50%;z-index:0}
+.hero-photo-frame{position:relative;z-index:1;width:265px;height:325px;border-radius:50% 50% 48% 52%/46% 46% 54% 54%;overflow:hidden;border:4px solid var(--white);box-shadow:0 12px 48px rgba(22,72,115,.15)}
+.hero-photo-frame img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.hero-pill{position:absolute;background:var(--white);border-radius:24px;padding:8px 16px;display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;color:var(--navy);box-shadow:0 4px 20px rgba(22,72,115,.14);z-index:2;white-space:nowrap}
+.hero-pill-top{top:20px;right:-24px}
+.hero-pill-bottom{bottom:36px;left:-32px}
+
+/* SECTIONS */
+section{padding:96px 60px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-label{font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+.section-title{font-family:'Fraunces',serif;font-size:clamp(2rem,3.5vw,2.8rem);font-weight:600;color:var(--navy);line-height:1.15;margin-bottom:16px}
+.section-desc{font-size:1rem;color:var(--muted);max-width:560px;line-height:1.75;margin-bottom:56px}
+
+/* ABOUT */
+#about{background:var(--mint)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.about-text p{color:var(--muted);font-size:1rem;line-height:1.8;margin-bottom:18px}
+.about-details{display:flex;flex-direction:column;gap:14px;margin-top:28px}
+.about-detail{display:flex;gap:14px;align-items:flex-start;padding:16px 20px;background:var(--white);border-radius:10px;border-left:3px solid var(--green)}
+.about-detail-icon{font-size:1.2rem}
+.about-detail-content strong{display:block;font-size:.85rem;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+.about-detail-content span{font-size:.95rem;color:var(--muted)}
+
+/* SKILLS */
+#skills{background:var(--white)}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.skill-card{background:var(--card);border:1px solid var(--silver);border-radius:16px;padding:32px 28px;transition:box-shadow .2s,transform .2s,border-color .2s;position:relative;overflow:hidden}
+.skill-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--green),var(--navy));opacity:0;transition:opacity .2s}
+.skill-card:hover{box-shadow:0 8px 32px rgba(22,72,115,.1);transform:translateY(-4px);border-color:var(--green)}
+.skill-card:hover::before{opacity:1}
+.skill-icon{width:48px;height:48px;background:var(--mint);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:18px}
+.skill-card h3{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:600;color:var(--navy);margin-bottom:10px}
+.skill-card p{font-size:.9rem;color:var(--muted);line-height:1.65}
+.skill-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tag{background:var(--mint);color:var(--navy);font-size:.75rem;font-weight:600;padding:4px 10px;border-radius:20px;letter-spacing:.03em}
+
+/* PROJECTS */
+#projects{background:var(--navy)}
+#projects .section-title{color:var(--white)}
+#projects .section-label{color:var(--green)}
+#projects .section-desc{color:rgba(255,255,255,.65)}
+.projects-list{display:flex;flex-direction:column;gap:48px}
+.project-item{display:grid;grid-template-columns:1fr 1fr;gap:52px;align-items:center;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:44px;transition:background .2s}
+.project-item:hover{background:rgba(255,255,255,.07)}
+.project-item.reverse{direction:rtl}
+.project-item.reverse>*{direction:ltr}
+.project-img{border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.1)}
+.project-img img{width:100%;height:260px;object-fit:cover;display:block}
+.project-number{font-family:'Fraunces',serif;font-size:4rem;font-weight:700;color:var(--green);opacity:.2;line-height:1;margin-bottom:8px}
+.project-role{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+.project-content h3{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:600;color:var(--white);margin-bottom:14px;line-height:1.2}
+.project-content p{color:rgba(255,255,255,.7);font-size:.95rem;line-height:1.75;margin-bottom:18px}
+.project-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;margin-bottom:16px}
+.pill{background:rgba(103,192,144,.15);color:var(--green);border:1px solid rgba(103,192,144,.3);font-size:.78rem;font-weight:600;padding:5px 12px;border-radius:20px;letter-spacing:.03em}
+.gh-btn{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.85);font-family:'Arimo',sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.03em;padding:10px 18px;border-radius:40px;text-decoration:none;transition:all .3s}
+.gh-btn:hover{background:var(--green);border-color:var(--green);color:var(--white);transform:translateY(-2px)}
+
+/* EXPERIENCE */
+#experience{background:var(--white)}
+.exp-cols{display:grid;grid-template-columns:1fr 1fr;gap:80px}
+.timeline{position:relative;padding-left:28px}
+.timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,var(--green),var(--navy));border-radius:2px}
+.timeline-item{position:relative;margin-bottom:44px;padding-left:28px}
+.timeline-item::before{content:'';position:absolute;left:-34px;top:6px;width:12px;height:12px;background:var(--green);border-radius:50%;border:3px solid var(--white);box-shadow:0 0 0 2px var(--green)}
+.timeline-item:last-child{margin-bottom:0}
+.timeline-period{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin-bottom:4px}
+.timeline-item h3{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:600;color:var(--navy);margin-bottom:3px}
+.timeline-org{font-size:.88rem;color:var(--muted);margin-bottom:10px;font-weight:500}
+.timeline-item li{font-size:.92rem;color:var(--muted);line-height:1.7;position:relative;padding-left:16px;margin-bottom:4px;list-style:none}
+.timeline-item li::before{content:'›';position:absolute;left:0;color:var(--green);font-weight:700}
+
+/* CONFERENCES */
+#conferences{background:var(--mint)}
+.conf-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.conf-card{background:var(--white);border-radius:14px;padding:26px 24px;border-left:4px solid var(--green);transition:box-shadow .2s,transform .2s}
+.conf-card:hover{box-shadow:0 6px 24px rgba(22,72,115,.1);transform:translateY(-3px)}
+.conf-year{font-size:.73rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:6px}
+.conf-card h4{font-family:'Fraunces',serif;font-size:1rem;font-weight:600;color:var(--navy);margin-bottom:6px;line-height:1.3}
+.conf-card p{font-size:.85rem;color:var(--muted);line-height:1.6}
+.conf-img{margin:10px 0 12px;border-radius:10px;overflow:hidden}
+.conf-img img{width:100%;height:170px;object-fit:cover;display:block}
+
+/* INTERNATIONAL */
+#international{background:var(--white)}
+.intl-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.intl-image-wrapper{border-radius:18px;overflow:hidden;border:1px solid var(--silver);box-shadow:0 8px 40px rgba(22,72,115,.1)}
+.intl-image-wrapper img{width:100%;height:340px;object-fit:cover;display:block}
+.intl-items{display:flex;flex-direction:column;gap:16px}
+.intl-item{background:var(--card);border:1px solid var(--silver);border-radius:12px;padding:20px;display:flex;gap:16px;align-items:flex-start;transition:border-color .2s}
+.intl-item:hover{border-color:var(--green)}
+.intl-flag{font-size:1.5rem}
+.intl-item strong{display:block;font-size:.9rem;font-weight:600;color:var(--navy);margin-bottom:3px}
+.intl-item span{font-size:.85rem;color:var(--muted)}
+
+/* TEDX */
+#tedx{background:var(--navy);padding:96px 60px}
+#tedx .section-label{color:var(--green)}
+#tedx .section-title{color:var(--white)}
+#tedx .section-desc{color:rgba(255,255,255,.65)}
+.tedx-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.tedx-image{border-radius:18px;overflow:hidden;border:2px solid rgba(255,255,255,.1);box-shadow:0 16px 60px rgba(0,0,0,.3)}
+.tedx-image img{width:100%;height:340px;object-fit:cover;display:block}
+.tedx-details{display:flex;flex-direction:column;gap:20px}
+.tedx-detail{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:22px 24px}
+.tedx-detail strong{display:block;font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:6px}
+.tedx-detail p{font-size:.95rem;color:rgba(255,255,255,.75);line-height:1.65}
+
+/* CERTIFICATIONS */
+#certifications{background:var(--card)}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.cert-card{background:var(--white);border:1px solid var(--silver);border-radius:14px;padding:26px 24px;transition:box-shadow .2s,transform .2s;display:flex;gap:16px;align-items:flex-start}
+.cert-card:hover{box-shadow:0 6px 24px rgba(22,72,115,.1);transform:translateY(-3px)}
+.cert-icon{width:42px;height:42px;background:var(--mint);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.cert-info strong{display:block;font-family:'Fraunces',serif;font-size:.98rem;font-weight:600;color:var(--navy);margin-bottom:4px;line-height:1.3}
+.cert-info span{font-size:.83rem;color:var(--muted)}
+.cert-date{font-size:.78rem;color:var(--green);font-weight:600;margin-top:4px;display:block}
+
+/* CONTACT */
+#contact{background:var(--white)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.contact-links{display:flex;flex-direction:column;gap:16px;margin-top:32px}
+.contact-link{display:flex;align-items:center;gap:14px;padding:18px 22px;background:var(--card);border:1px solid var(--silver);border-radius:12px;text-decoration:none;transition:all .2s}
+.contact-link:hover{border-color:var(--green);background:var(--mint);transform:translateX(6px)}
+.contact-link-icon{width:40px;height:40px;background:var(--mint);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.contact-link-text strong{display:block;font-size:.83rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--navy);margin-bottom:2px}
+.contact-link-text span{font-size:.9rem;color:var(--muted)}
+.contact-form-area{display:flex;flex-direction:column;gap:16px}
+.contact-form-area label{font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);margin-bottom:4px;display:block}
+.contact-form-area input,.contact-form-area textarea{width:100%;padding:13px 16px;border:1.5px solid var(--silver);border-radius:10px;font-family:'Arimo',sans-serif;font-size:.95rem;color:var(--text);background:var(--white);transition:border-color .2s;outline:none}
+.contact-form-area input:focus,.contact-form-area textarea:focus{border-color:var(--green)}
+.contact-form-area textarea{min-height:130px;resize:vertical}
+
+/* FOOTER */
+footer{background:var(--navy);color:rgba(255,255,255,.6);text-align:center;padding:40px 60px;font-size:.88rem}
+footer span{color:var(--green)}
+
+/* SCROLL PROGRESS */
+#scroll-prog{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--green),var(--navy));z-index:999;width:0%;transition:width .1s linear}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:0 24px}
+  section{padding:64px 24px}
+  .hero{padding:100px 24px 60px}
+  .hero-inner,.about-grid,.exp-cols,.intl-grid,.tedx-inner,.contact-grid,.project-item{grid-template-columns:1fr;gap:40px}
+  .hero-inner{grid-template-columns:1fr}
+  .hero-photo-wrap{order:-1}
+  .hero-stats{grid-template-columns:repeat(3,1fr)}
+  .skills-grid{grid-template-columns:1fr 1fr}
+  .conf-grid{grid-template-columns:1fr}
+  .project-item.reverse{direction:ltr}
+  .nav-links{display:none}
+}
+@media(max-width:560px){
+  .skills-grid{grid-template-columns:1fr}
+  .hero-stats{grid-template-columns:1fr}
+  .cert-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div id="scroll-prog"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="assets/TND_Logo-removebg-preview.png" alt="">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#conferences">Events</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <!-- <li><a href="#contact" class="nav-cta">Contact</a></li> -->
+     <li><a href="#contact">Contact</a></li>
+    <li><a href="assets/12220079_CV.pdf" download="Tashi_Norbu_Dema_CV.pdf">Download CV</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge"><span></span> Open to Opportunities</div>
+      <h1>Tashi<br/><em>Norbu Dema</em></h1>
+      <p class="hero-subtitle">AI Engineer · UI/UX Designer · Data Analyst</p>
+      <p class="hero-desc">Building intelligent, human-centred digital solutions at the intersection of machine learning, user experience, and real-world impact — rooted in Bhutan, thinking globally.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-secondary">Get in Touch</a>
+        <!-- <a href="assets/12220079_CV.pdf" download="Tashi_Norbu_Dema_CV.pdf" class="btn-secondary">Download CV ↓</a> -->
+
+      </div>
+    </div>
+
+    <div class="hero-photo-wrap">
+      <div class="hero-blob-bg"></div>
+      <div class="hero-photo-frame">
+        <img src="assets/CV.jpeg" alt="">
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-card">
+        <span class="stat-number">6+</span>
+        <span class="stat-label">AI Projects Built</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">3</span>
+        <span class="stat-label">Internships</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">7+</span>
+        <span class="stat-label">Certifications</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="section-label">About Me</p>
+        <h2 class="section-title">Driven by curiosity,<br/><em style="font-style:italic;color:var(--green)">grounded by purpose.</em></h2>
+        <p>I'm Tashi Norbu Dema — a final-year Computer Science student specialising in Artificial Intelligence and Data Science at Gyalpozhing College of Information Technology, Bhutan. I'm passionate about creating technology that is intelligent, human-centred, and impactful.</p>
+        <p>My work spans end-to-end AI model development, UI/UX design with Figma, frontend development, and data analytics — always with a focus on meaningful, accessible outcomes for real communities in Bhutan and beyond.</p>
+        <p>As an ISFP, I balance creative intuition with analytical rigour. Whether training a deep learning model or designing a healthcare interface, I bring the same commitment: make it meaningful, make it work, make it matter.</p>
+      </div>
+      <div class="about-details">
+        <div class="about-detail">
+          <span class="about-detail-icon">🎓</span>
+          <div class="about-detail-content">
+            <strong>Education</strong>
+            <span>BSc Computer Science (AI &amp; Data Science) — Gyalpozhing College of IT, Bhutan (2022–2026)</span>
+          </div>
+        </div>
+        <div class="about-detail">
+          <span class="about-detail-icon">📍</span>
+          <div class="about-detail-content">
+            <strong>Location</strong>
+            <span>Thimphu, Bhutan</span>
+          </div>
+        </div>
+        <div class="about-detail">
+          <span class="about-detail-icon">💼</span>
+          <div class="about-detail-content">
+            <strong>Focus Areas</strong>
+            <span>AI/ML · NLP · UI/UX Design · Data Analytics · Cloud</span>
+          </div>
+        </div>
+        <div class="about-detail">
+          <span class="about-detail-icon">🌐</span>
+          <div class="about-detail-content">
+            <strong>Languages</strong>
+            <span>Dzongkha (Native) · Sharshop (Fluent) · English (Fluent) · Nepali · Hindi</span>
+          </div>
+        </div>
+        <div class="about-detail">
+          <span class="about-detail-icon">✉️</span>
+          <div class="about-detail-content">
+            <strong>Email</strong>
+            <span>tashinorbudema@gmail.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <p class="section-label">Technical Expertise</p>
+    <h2 class="section-title">Skills &amp; Capabilities</h2>
+    <p class="section-desc">A multidisciplinary toolkit spanning AI development, design, and cloud technologies.</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🧠</div>
+        <h3>Machine Learning &amp; Deep Learning</h3>
+        <p>End-to-end model development — from dataset preparation and training to evaluation and deployment using industry-standard frameworks.</p>
+        <div class="skill-tags"><span class="tag">TensorFlow</span><span class="tag">Keras</span><span class="tag">VGG16</span><span class="tag">MobileNet-V2</span><span class="tag">CNN</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">💬</div>
+        <h3>Natural Language Processing</h3>
+        <p>Building intelligent text-based systems, RAG pipelines, sentiment analysis, and conversational AI applications with LLMs.</p>
+        <div class="skill-tags"><span class="tag">LLMs</span><span class="tag">RAG</span><span class="tag">Transformers</span><span class="tag">Embeddings</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🎨</div>
+        <h3>UI/UX Design</h3>
+        <p>Designing intuitive, user-centred interfaces from wireframes to high-fidelity prototypes with rigorous usability testing.</p>
+        <div class="skill-tags"><span class="tag">Figma</span><span class="tag">Prototyping</span><span class="tag">UX Research</span><span class="tag">Design Systems</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">💻</div>
+        <h3>Frontend Development</h3>
+        <p>Building responsive, accessible web interfaces and translating design specifications into production-ready code.</p>
+        <div class="skill-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">Web APIs</span></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">📊</div>
+        <h3>Data Visualisation</h3>
+        <p>Transforming complex datasets into clear, actionable insights through interactive dashboards and visual reporting tools.</p>
+        <div class="skill-tags"><span class="tag">Power BI</span><span class="tag">Python</span><span class="tag">Pandas</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <p class="section-label">Featured Work</p>
+    <h2 class="section-title">Projects</h2>
+    <p class="section-desc">AI-powered applications built to solve real healthcare, education, and social challenges in Bhutan.</p>
+
+    <div class="projects-list">
+
+      <!-- 1. Yangkhor Chatbot -->
+      <div class="project-item">
+        <div class="project-img">
+          <img src="assets/chatbot1.png" alt="">
+        </div>
+        <div class="project-content">
+          <div class="project-number">01</div>
+          <p class="project-role">AI Model Developer</p>
+          <h3>Yangkhor Intelligent HelpDesk Chatbot</h3>
+          <p>An AI-powered helpdesk chatbot for Bhutan TradeFin Net (BTFN) with human escalation capabilities, autonomously handling 80–90% of routine queries. Implemented LLMs, RAG pipelines, embeddings, and sentiment analysis for contextually rich, accurate responses.</p>
+          <div class="project-pills"><span class="pill">LLM</span><span class="pill">RAG</span><span class="pill">NLP</span><span class="pill">Sentiment Analysis</span><span class="pill">Embeddings</span></div>
+          <a href="https://github.com/tashin06/btfnchatbot" target="_blank" class="gh-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg> tashin06/btfnchatbot</a>
+        </div>
+      </div>
+
+      <!-- 2. Jangkha -->
+      <div class="project-item reverse">
+        <div class="project-content">
+          <div class="project-number">02</div>
+          <p class="project-role">AI Model Developer · Team Lead</p>
+          <h3>Jangkha — Dzongkha Numerical Learning</h3>
+          <p>Led a team of five to build a culturally rooted AI web application that teaches Dzongkha numerals through computer vision, adaptive gamification, and real-time feedback. Achieved 99.13% accuracy using MobileNet-V2.</p>
+          <div class="project-pills"><span class="pill">MobileNet-V2</span><span class="pill">Deep Learning</span><span class="pill">Gamification</span><span class="pill">Web APIs</span><span class="pill">Team Lead</span></div>
+          <a href="https://github.com/tashin06/Jangkha_dzo" target="_blank" class="gh-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg> tashin06/Jangkha_dzo</a>
+        </div>
+        <div class="project-img">
+          <img src="assets/jangkha.png" alt="">
+        </div>
+      </div>
+
+      <!-- 3. Blood Bank -->
+      <div class="project-item">
+        <div class="project-img">
+          <img src="assets/bloodbank.png" alt="">
+        </div>
+        <div class="project-content">
+          <div class="project-number">03</div>
+          <p class="project-role">UI Designer &amp; Frontend Developer</p>
+          <h3>Blood Bank Management System</h3>
+          <p>A comprehensive healthcare platform managing Bhutan's blood donation ecosystem — covering donor registration, real-time inventory with detailed reporting, blood request processing for healthcare facilities, and a multi-role notification system for donors, admins, and providers.</p>
+          <div class="project-pills"><span class="pill">Healthcare</span><span class="pill">UI/UX</span><span class="pill">Frontend</span><span class="pill">Real-time</span><span class="pill">National Scale</span></div>
+          <a href="https://github.com/tashin06/Blood_bank" target="_blank" class="gh-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg> tashin06/Blood_bank</a>
+        </div>
+      </div>
+
+      <!-- 4. Animal Breed -->
+      <div class="project-item reverse">
+        <div class="project-content">
+          <div class="project-number">04</div>
+          <p class="project-role">AI Model Developer &amp; UI Designer</p>
+          <h3>Domestic Animal Breed Identification</h3>
+          <p>AI-powered image classification system identifying domestic animal breeds using deep learning. Led the full model training pipeline — benchmarking VGG16, LeNet-5, AlexNet, and ResNet architectures — with VGG16 achieving 88% accuracy, selected as the production model.</p>
+          <div class="project-pills"><span class="pill">VGG16</span><span class="pill">Deep Learning</span><span class="pill">Image Classification</span><span class="pill">UI Design</span></div>
+          <a href="https://github.com/tashin06/Group1_animalbreed" target="_blank" class="gh-btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg> tashin06/Group1_animalbreed</a>
+        </div>
+          <div class="project-img">
+            <img src="assets/aniTech.png" alt="">
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Druk Brain Scan -->
+      <div class="project-item">
+        <div class="project-img">
+          <img src="assets/brainScan.png" alt="">
+        </div>
+        <div class="project-content">
+          <div class="project-number">05</div>
+          <p class="project-role">UI/UX Designer</p>
+          <h3>Druk Brain Scan</h3>
+          <p>Designed the end-to-end user experience for an AI-powered brain tumour detection tool using the VGG16 model, achieving 95.8% test accuracy. Focused on making clinical AI outputs intuitive for healthcare professionals without a technical background.</p>
+          <div class="project-pills"><span class="pill">VGG16</span><span class="pill">Medical AI</span><span class="pill">Figma</span><span class="pill">Healthcare UX</span></div>
+        </div>
+      </div>
+
+      <!-- 6. Grab&GO -->
+      <div class="project-item reverse">
+        <div class="project-content">
+          <div class="project-number">06</div>
+          <p class="project-role">UI/UX Designer &amp; Frontend Developer</p>
+          <h3>Grab&amp;GO — Food Ordering App</h3>
+          <p>Designed and developed a clean, user-friendly takeaway food ordering web application. Focused on reducing friction at every touchpoint — from menu browsing to order confirmation — using human-centred design principles and responsive frontend development.</p>
+          <div class="project-pills"><span class="pill">HTML · CSS · JS</span><span class="pill">UI/UX</span><span class="pill">Frontend Dev</span><span class="pill">Responsive</span></div>
+        </div>
+        <div class="project-img">
+          <img src="assets/GrabGo.png" alt="">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <p class="section-label">Professional Background</p>
+    <h2 class="section-title">Experience</h2>
+    <p class="section-desc">Internships where I applied AI, design, and data skills to real organisational challenges.</p>
+    <div class="exp-cols">
+      <div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <p class="timeline-period">January 2026</p>
+            <h3>Intern — Network &amp; IT Operations</h3>
+            <p class="timeline-org">Bhutan Telecom Limited, Thimphu</p>
+            <ul>
+              <li>Rotated through CANS, NNOC, and RAN departments gaining broad national telecom exposure</li>
+              <li>Developed hands-on knowledge in GPON systems and last-mile internet connectivity</li>
+              <li>Supported customer connectivity and enterprise Wi-Fi solutions</li>
+            </ul>
+          </div>
+          <div class="timeline-item">
+            <p class="timeline-period">July 2025</p>
+            <h3>Intern — AI &amp; Language Technology</h3>
+            <p class="timeline-org">GovTech Bhutan, Thimphu</p>
+            <ul>
+              <li>Integrated Dzongkha NLP models for translation, speech recognition, and text-to-speech</li>
+              <li>Built a responsive frontend with HTML, CSS, JavaScript, and REST APIs</li>
+              <li>Implemented file support features for PDF and TXT formats</li>
+            </ul>
+          </div>
+          <div class="timeline-item">
+            <p class="timeline-period">June – July 2024</p>
+            <h3>Intern — AI &amp; Data Visualisation</h3>
+            <p class="timeline-org">Yangkor Private Limited, Thimphu</p>
+            <ul>
+              <li>Collaborated with development teams on AI and data visualisation projects</li>
+              <li>Created Power BI dashboards and reports using eCMS data</li>
+              <li>Gained experience in real-world project workflows and agile practices</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <p class="timeline-period">Feb – June 2025</p>
+            <h3>PRJ 301 Team Lead</h3>
+            <p class="timeline-org">Gyalpozhing College of IT</p>
+            <ul>
+              <li>Led a team of five through full project lifecycle of Jangkha AI app</li>
+              <li>Managed timelines, facilitated design sprints, and bridged AI and frontend teams</li>
+              <li>Strengthened collaboration, project management, and leadership skills</li>
+            </ul>
+          </div>
+          <div class="timeline-item">
+            <p class="timeline-period">Aug 2023 – June 2024</p>
+            <h3>Treasurer (EXCO) — DevForge Club</h3>
+            <p class="timeline-org">Gyalpozhing College of IT</p>
+            <ul>
+              <li>Maintained accurate budget records and tracked financial transactions</li>
+              <li>Monitored member attendance and club activity engagement</li>
+              <li>Ensured transparency and accountability in all financial matters</li>
+            </ul>
+          </div>
+          <div class="timeline-item">
+            <p class="timeline-period">Feb – June 2023</p>
+            <h3>Class Representative</h3>
+            <p class="timeline-org">Gyalpozhing College of IT</p>
+            <ul>
+              <li>Acted as liaison between students and faculty</li>
+              <li>Coordinated academic activities and conveyed important announcements</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFERENCES & WORKSHOPS -->
+<section id="conferences">
+  <div class="section-inner">
+    <p class="section-label">Events &amp; Learning</p>
+    <h2 class="section-title">Conferences &amp; Workshops</h2>
+    <p class="section-desc">Actively engaging with the global AI and tech community through conferences, workshops, and innovation programmes.</p>
+    <div class="conf-grid">
+
+      <div class="conf-card">
+        <p class="conf-year">Nov 2025 · Thimphu, Bhutan</p>
+        <h4>3rd Australia-Bhutan Research Conference (ABRC 2025)</h4>
+        <div class="conf-img">
+          <img src="assets/ABRC.png" alt="">
+        </div>
+        <p>Attended 3 full days of the ABRC 2025 — "Bridging Knowledge, Innovation, and Policy: Harnessing the Power of Research." Organised jointly by the Royal University of Bhutan and the Royal Bhutanese Embassy of Canberra with Australian Government support.</p>
+      </div>
+
+      <div class="conf-card">
+        <p class="conf-year">July 16, 2025 · Thimphu, Bhutan</p>
+        <h4>AI for Development Workshop</h4>
+        <div class="conf-img">
+          <img src="assets/AIforDev.png" alt="">
+        </div>
+        <p>Attended Day 2 of the high-level AI for Development Workshop hosted by the Royal Government of Bhutan, UAE, G42, Eurasia Group, and GovTech — featuring discussions on Bhutan's development goals and AI integration strategies.</p>
+      </div>
+
+      <div class="conf-card">
+        <p class="conf-year">May 28, 2025 · Thimphu, Bhutan</p>
+        <h4>Bhutan Launch — Human Development Report 2025</h4>
+        <div class="conf-img">
+          <img src="assets/HumanDev.png" alt="">
+        </div>
+        <p>Attended the national Bhutan launch of the UNDP Human Development Report 2025: "A matter of choice: People and possibilities in the age of AI" — exploring AI's impact on human development and the future of work.</p>
+      </div>
+
+      <div class="conf-card">
+        <p class="conf-year">March 2025 · Bhutan</p>
+        <h4>National Startup Weekend</h4>
+        <div class="conf-img">
+          <img src="assets/NSW.jpeg" alt="">
+        </div>
+        <p>Participated in the National Startup Weekend under the theme "Cultivating Conscious Innovation: Merging Emerging Technologies with Mindful Development Practices" — pitching and developing an innovative startup concept with a cross-functional team.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INTERNATIONAL -->
+<section id="international">
+  <div class="section-inner">
+    <p class="section-label">Global Exposure</p>
+    <h2 class="section-title">International Experience</h2>
+    <p class="section-desc">Cross-border learning and collaboration that shaped a global perspective on technology, entrepreneurship, and design.</p>
+    <div class="intl-grid">
+      <div>
+        <div class="intl-image-wrapper">
+          <img src="assets/Singapore.jpg" alt="" srcset="">
+        </div>
+      </div>
+      <div class="intl-items">
+        <div class="intl-item">
+          <span class="intl-flag">🇸🇬</span>
+          <div>
+            <strong>GCIT SPARK — Nanyang Polytechnic, Singapore (Nov 2025)</strong>
+            <span>Selected for a week-long immersive exchange at NYP — Bhutan's first overseas programme of this kind. Attended Business Innovation &amp; Entrepreneurship class and engaged with international student peers.</span>
+          </div>
+        </div>
+        <div class="intl-item">
+          <span class="intl-flag">🤖</span>
+          <div>
+            <strong>SQREEM Technologies — AI &amp; Big Data</strong>
+            <span>Company visit to SQREEM Technologies, gaining insights into large-scale AI applications for human behaviour analysis and digital intelligence.</span>
+          </div>
+        </div>
+        <div class="intl-item">
+          <span class="intl-flag">🔬</span>
+          <div>
+            <strong>A*STAR Research Institute</strong>
+            <span>Visited A*STAR, Singapore's leading public research institution, exploring real-world research and innovation across advanced manufacturing, biomedical, and digital domains.</span>
+          </div>
+        </div>
+        <div class="intl-item">
+          <span class="intl-flag">🌐</span>
+          <div>
+            <strong>Cultural Exchange &amp; Global Network</strong>
+            <span>Built lasting international friendships and professional connections with NYP students, broadening perspective on global collaboration and technology entrepreneurship.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEDX -->
+<section id="tedx">
+  <div class="section-inner">
+    <p class="section-label">Community Leadership</p>
+    <h2 class="section-title">TEDxThimphu</h2>
+    <p class="section-desc">Contributing to Bhutan's growing culture of ideas, innovation, and public discourse.</p>
+    <div class="tedx-inner">
+      <div class="tedx-image">
+        <img src="assets/TEDx.jpeg" alt="" srcset="">
+      </div>
+      <div class="tedx-details">
+        <div class="tedx-detail">
+          <strong>Role · March 2026</strong>
+          <p>Volunteer — contributed to event logistics, speaker coordination, and ensuring a seamless experience for attendees at TEDxThimphu, Bhutan's premier ideas conference.</p>
+        </div>
+        <div class="tedx-detail">
+          <strong>Impact</strong>
+          <p>Helped platform diverse Bhutanese voices and international speakers, fostering dialogue on technology, culture, sustainability, and education.</p>
+        </div>
+        <div class="tedx-detail">
+          <strong>Community</strong>
+          <p>Part of a volunteer team committed to making TEDxThimphu a meaningful gathering for Bhutan's emerging generation of thinkers, entrepreneurs, and changemakers.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-inner">
+    <p class="section-label">Credentials</p>
+    <h2 class="section-title">Certifications</h2>
+    <p class="section-desc">Validated expertise across AI, cloud, design, and data analytics from globally recognised programmes.</p>
+    <div class="cert-grid">
+      <div class="cert-card"><div class="cert-icon">☁️</div><div class="cert-info"><strong>AWS Academy Cloud Foundations</strong><span>Amazon Web Services</span><span class="cert-date">Aug – Nov 2024</span></div></div>
+      <div class="cert-card"><div class="cert-icon">🎨</div><div class="cert-info"><strong>Foundations of User Experience (UX) Design</strong><span>Google / Coursera</span><span class="cert-date">Feb 28, 2026</span></div></div>
+      <div class="cert-card"><div class="cert-icon">🔍</div><div class="cert-info"><strong>Start the UX Design Process: Empathize, Define &amp; Ideate</strong><span>Google / Coursera</span><span class="cert-date">March 4, 2026</span></div></div>
+      <div class="cert-card"><div class="cert-icon">📐</div><div class="cert-info"><strong>Build Wireframes &amp; Low-Fidelity Prototypes</strong><span>Google / Coursera</span><span class="cert-date">March 7, 2026</span></div></div>
+      <div class="cert-card"><div class="cert-icon">🧪</div><div class="cert-info"><strong>Conduct UX Research &amp; Test Early Concepts</strong><span>Google / Coursera</span><span class="cert-date">March 15, 2026</span></div></div>
+      <div class="cert-card"><div class="cert-icon">✨</div><div class="cert-info"><strong>Create High-Fidelity Designs &amp; Prototypes in Figma</strong><span>Google / Coursera</span><span class="cert-date">March 28, 2026</span></div></div>
+      <div class="cert-card"><div class="cert-icon">⚡</div><div class="cert-info"><strong>Build Dynamic User Interfaces (UI) for Websites</strong><span>Google / Coursera</span><span class="cert-date">April 5, 2026</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-label">Let's Connect</p>
+    <h2 class="section-title">Get in Touch</h2>
+    <p class="section-desc">Open to internships, collaborations, and conversations about AI, design, and technology for Bhutan and beyond.</p>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-links">
+          <a href="mailto:tashinorbudema@gmail.com" class="contact-link">
+            <div class="contact-link-icon">✉️</div>
+            <div class="contact-link-text"><strong>Email</strong><span>tashinorbudema@gmail.com</span></div>
+          </a>
+          <a href="https://www.linkedin.com/in/tashi-norbu-dema" target="_blank" class="contact-link">
+            <div class="contact-link-icon">🔗</div>
+            <div class="contact-link-text"><strong>LinkedIn</strong><span>linkedin.com/in/tashi-norbu-dema</span></div>
+          </a>
+          <a href="https://github.com/tashin06" target="_blank" class="contact-link">
+            <div class="contact-link-icon">🐙</div>
+            <div class="contact-link-text"><strong>GitHub</strong><span>github.com/tashin06</span></div>
+          </a>
+          <a href="tel:+97577344383" class="contact-link">
+            <div class="contact-link-icon">📱</div>
+            <div class="contact-link-text"><strong>Phone</strong><span>+975 77344383</span></div>
+          </a>
+          <div class="contact-link" style="cursor:default">
+            <div class="contact-link-icon">📍</div>
+            <div class="contact-link-text"><strong>Location</strong><span>Thimphu, Bhutan 🇧🇹</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-area">
+        <div><label>Name</label><input type="text" placeholder="Your name"/></div>
+        <div><label>Email</label><input type="email" placeholder="your@email.com"/></div>
+        <div><label>Subject</label><input type="text" placeholder="What's this about?"/></div>
+        <div><label>Message</label><textarea placeholder="Tell me about your project or opportunity..."></textarea></div>
+        <button class="btn-primary" style="border:none;cursor:pointer;width:100%;padding:14px" onclick="this.textContent='Message Sent ✓';this.style.background='var(--green)';setTimeout(()=>{this.textContent='Send Message';this.style.background=''},3000)">Send Message</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <span>Tashi Norbu Dema</span> · Think · Network · Deliver · Thimphu, Bhutan</p>
+</footer>
+
+<script>
+// Scroll progress
+window.addEventListener('scroll',()=>{
+  const p=window.pageYOffset/(document.body.scrollHeight-window.innerHeight)*100;
+  document.getElementById('scroll-prog').style.width=p+'%';
+});
+</script>
+</body>
+</html>
